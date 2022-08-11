@@ -3,6 +3,7 @@
 import chalk from "chalk"
 import figlet from "figlet"
 import { Command } from "commander"
+import * as dotenv from "dotenv"
 import { getDetailedCommands } from "./utils"
 
 const main = (): void => {
@@ -21,4 +22,5 @@ const main = (): void => {
   program.parse(process.argv)
 }
 
+dotenv.config()
 main()
