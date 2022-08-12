@@ -19,16 +19,20 @@ const getOSNetworkInformations = (): void => {
   )
 }
 
-const getIpApiNetworkInformations: () => Promise<void> = async () => {
+export const getIpApiNetworkInformations: () => Promise<
+  Record<string, unknown>
+> = async () => {
   const response = await fetch(`${process.env.IP_API_URL}${getIPv6Address()}`)
   const data: Record<string, unknown> = await response.json()
 
-  return console.log(data)
+  return data
 }
 
-export const getNetworkInformations = (option: { ipapi?: boolean }): void => {
+export const getNetworkInformations = async (option: {
+  ipapi?: boolean
+}): Promise<void> => {
   if (option.ipapi) {
-    getIpApiNetworkInformations()
+    console.log(await getIpApiNetworkInformations())
   } else {
     getOSNetworkInformations()
   }
